@@ -1,0 +1,1125 @@
+[
+  {
+    "industryName": "GDP",
+    "industryId": "",
+    "periodType":"1",
+    "items": [
+      {
+        "itemName": "全国GDP",
+        "itemId": "1qaz12335",
+        "indexList": [
+          {
+            "indexName": "累计值",
+            "indexId": "123456734a56786790",
+            "table": "",
+            "type": 0,
+            "format": 0,
+            "unit": "亿元"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "123456734a56786792",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },{
+        "itemName": "三次产业增加值",
+        "itemId": "1qaz12338",
+        "indexList": [
+          {
+            "indexName": "累计值",
+            "indexId": "123456734a56786790",
+            "table": "",
+            "type": 0,
+            "format": 0,
+            "unit": "亿元"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "123456734a56786792",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "分地区GDP和三次产业增加值",
+        "itemId": "e7dd201874d44372a21fadf70a8d176d",
+        "indexList": [
+          {
+            "indexName": "累计值",
+            "indexId": "b9f685fa1b854904885bac839031033d",
+            "table": "",
+            "type": 0,
+            "format": 0,
+            "unit": "亿元"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "25aa855d995f4f03b74d3d3c86e34790",
+            "table": "",
+            "type": 3,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "industryName": "工业",
+    "industryId": "",
+    "periodType":"0",
+    "items": [
+      {
+        "itemName": "全国规模以上工业增加值",
+        "itemId": "1234561qaz1",
+        "indexList": [
+          {
+            "indexName": "累计同比%",
+            "indexId": "23456789b1238",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "月度同比%",
+            "indexId": "23456789b1239",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "分地区规模以上工业增加值",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "月度同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "全国规模以上工业利润总额",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿元"
+          },
+          {
+            "indexName": "累计同期",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿元"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "分地区规模以上工业利润总额",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿元"
+          },
+          {
+            "indexName": "累计同期",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿元"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "industryName": "煤炭行业",
+    "industryId": "",
+    "periodType":"0",
+    "items": [
+      {
+        "itemName": "全国煤炭产量",
+        "itemId": "100210020030",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "2b2775e3d5fa4d3fafbcd49ffb2b6fd2",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "883282cb71ea4cee803105ea95a870af",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "industryName": "电力行业",
+    "industryId": "",
+    "periodType":"0",
+    "items": [
+      {
+        "itemName": "全国发电量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "全国用电量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "全国水电发电量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "全国火电发电量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "全国核电发电量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "全国风电发电量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "全国一产用电量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 0,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 0,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "全国二产用电量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 0,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 0,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "全国三产用电量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 0,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 0,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "全国居民生活用电量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 0,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 0,
+            "unit": "亿千瓦时"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "%"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "industryName": "油气行业",
+    "industryId": "",
+    "periodType":"0",
+    "items": [
+      {
+        "itemName": "天然原油产量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "汽油产量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "煤油产量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "柴油产量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "天然气产量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿立方米"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "亿立方米"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "原油进口量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "成品油进口量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "液化天然气进口量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "液化石油气进口量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "万吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "industryName": "交通运输",
+    "industryId": "",
+    "periodType":"0",
+    "items": [
+      {
+        "itemName": "全社会货运量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "亿吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "亿吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "铁路货运量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "亿吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "亿吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "公路货运量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "亿吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "亿吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "itemName": "水运货运量",
+        "itemId": "",
+        "indexList": [
+          {
+            "indexName": "当月值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "亿吨"
+          },
+          {
+            "indexName": "累计值",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 2,
+            "unit": "亿吨"
+          },
+          {
+            "indexName": "当月同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          },
+          {
+            "indexName": "累计同比%",
+            "indexId": "",
+            "table": "",
+            "type": 0,
+            "format": 1,
+            "unit": "%"
+          }
+        ]
+      }
+    ]
+  }
+]
