@@ -3,27 +3,39 @@
     <div
       @click="toggle()"
       @dblclick="changeType">
-      <!--<input type="checkbox">-->
       {{model.itemName}}
     </div>
     <ul class="childrenUl" v-show="open" v-if="isFolder">
-      <li  v-for="(model, index) in model.indexList">
+      <!--<li  v-for="model in model.indexList">
         <div class="checkbox"
-             @click="selectClick($event)"></div>{{model.indexName}}</li>
+             v-on:click="selectClick(model,$event)"></div>{{model.indexName}}</li>-->
+        <item2 v-for="model in model.indexList" :model="model"
+        v-on:selectClick="selectClick"></item2>
+
     </ul>
   </li>
 </template>
 <script>
+  import item2 from './item2'
+
   export default {
     name: 'item1',
     props: {
       model: Object
     },
+    components: {
+      item2
+    },
     data: function () {
       return {
         open: false,
         selectArr : [],
-        inSelectArr: []
+        inSelectArr: [],
+        thisObject: {
+           "itemName": this.model.itemName,
+           "itemId": this.model.itemId,
+           "indexList": []
+        }
       }
     },
     computed: {
@@ -45,8 +57,15 @@
           this.open = true
         }
       },
-      selectClick : function (e) {
-        e.target.classList.toggle('select')
+      selectClick : function (model) {
+          let index = this.thisObject.indexList.indexOf(model);
+          if(index > -1) {
+              console.log('splice');
+              this.thisObject.indexList.splice(index,1)
+          }else {
+              this.thisObject.indexList.push(model);
+          }
+          this.$emit('selectClick',this.thisObject);
       }
     }
   }
@@ -55,14 +74,5 @@
   .childrenUl {
     margin-left: 20px;
   }
-  .checkbox {
-    width: 10px;
-    height:10px;
-    border: 1px solid #ccc;
-    float: left;
-    margin-right: 5px;
-  }
-  .select {
-    background-color: #ccc;
-  }
+
 </style>

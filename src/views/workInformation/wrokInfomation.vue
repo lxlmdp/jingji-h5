@@ -3,53 +3,52 @@
     <jheader go-back="true" head-title="经济运行工作信息"></jheader>
     <div class="conList">
       <ul>
-        <li class="select">
-          <p class="p1">2016年全国经济运行调节培训班在北京举办济运行调节培训班在北京举办</p>
-          <p class="p2">工作通知<em>2017-05-23</em></p>
-        </li>
-        <li class="select">
-          <p class="p1">2016年全国经济运行调节培训班在北京举办济运行调节培训班在北京举办</p>
-          <p class="p2">工作通知<em>2017-05-23</em></p>
-        </li>
-        <li class="select">
-          <p class="p1">2016年全国经济运行调节培训班在北京举办济运行调节培训班在北京举办</p>
-          <p class="p2">工作通知<em>2017-05-23</em></p>
-        </li>
-        <li class="select">
-          <p class="p1">2016年全国经济运行调节培训班在北京举办济运行调节培训班在北京举办</p>
-          <p class="p2">工作通知<em>2017-05-23</em></p>
-        </li>
-        <li>
-          <p class="p1">2016年全国经济运行调节培训班在北京举办济运行调节培训班在北京举办</p>
-          <p class="p2">工作通知<em>2017-05-23</em></p>
-        </li>
-        <li>
-          <p class="p1">2016年全国经济运行调节培训班在北京举办济运行调节培训班在北京举办</p>
-          <p class="p2">工作通知<em>2017-05-23</em></p>
-        </li>
-        <li>
-          <p class="p1">2016年全国经济运行调节培训班在北京举办济运行调节培训班在北京举办</p>
-          <p class="p2">工作通知<em>2017-05-23</em></p>
-        </li>
-        <li>
-          <p class="p1">2016年全国经济运行调节培训班在北京举办济运行调节培训班在北京举办</p>
-          <p class="p2">工作通知<em>2017-05-23</em></p>
-        </li>
-        <li>
-          <p class="p1">2016年全国经济运行调节培训班在北京举办济运行调节培训班在北京举办</p>
-          <p class="p2">工作通知<em>2017-05-23</em></p>
-        </li>
+        <router-link v-for="row in rows" tag="li" v-bind:class="{ select: row.IF_READ == '0' }"
+                     :to="{ path: '/InfomationCon',query: { DATA_ID: row.DATA_ID }}">
+          <p class="p1">{{row.TITLE_NAME}}</p>
+          <p class="p2">工作通知<em>{{convert(row.CREATE_TIME)}}</em></p>
+        </router-link>
+
       </ul>
     </div>
   </div>
 </template>
 <script>
   import Jheader from '../../components/Jheader'
+  import {RELLIST} from '../../utils/api'
+  import {convertDate} from '../../utils/util'
 
   export default {
     name:'workInfomation',
+    created() {
+      this.$ajax.get(RELLIST,{
+          params: {
+              TOKEN: window.localStorage.getItem('token'),
+              page: '1',
+              rows: '10'
+          }
+      })
+        .then(reponese => {
+          console.log(reponese);
+          let arr = reponese.data.rows;
+          this.rows = this.rows.concat(arr) ;
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    },
+      methods: {
+          convert: function (date) {
+              return  convertDate(date,'YYYY-MM-DD');;
+          }
+      },
     components: {
       Jheader
+    },
+    data() {
+      return {
+        rows: []
+      }
     }
   }
 </script>

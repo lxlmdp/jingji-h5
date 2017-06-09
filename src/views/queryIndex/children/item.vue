@@ -5,14 +5,13 @@
       :class="{bold: isFolder}"
       @click="toggle"
       @dblclick="changeType">
-      <!--<input type="checkbox">-->
       {{model.industryName}}
     </div>
     <ul class="childrenUl" v-show="open" v-if="isFolder">
       <item1
         class="item"
         v-for="model in model.items"
-        :model="model">
+        :model="model" v-on:selectClick="itemsParent">
       </item1>
     </ul>
   </li>
@@ -31,7 +30,13 @@
     },
     data: function () {
       return {
-        open: false
+        open: false,
+        dateObject:{
+            "industryName": this.model.industryName,
+            "industryId": this.model.industryId,
+            "periodType": this.model.periodType,
+            "items": []
+        }
       }
     },
     computed: {
@@ -53,6 +58,22 @@
           this.addChild()
           this.open = true
         }
+      },
+      itemsParent:function (item) {
+        let arr =  this.dateObject.items
+        let index = arr.indexOf(item);
+        if(index > -1) {
+            arr[index] = item;
+        }else {
+            arr.push(item);
+        }
+        for(let i in arr) {
+            if(!arr[i].indexList.length) {
+                arr.splice(this.dateObject.items[i],1)
+            }
+        }
+        console.log(this.dateObject);
+        this.$emit('dateObject',this.dateObject);
       }
     }
   }

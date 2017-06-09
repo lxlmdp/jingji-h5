@@ -8,7 +8,7 @@
           <p class="p2">发布国家发改委运行局工作信息</p>
         </div>
         <span class="right">
-          消息(<em>12</em>)
+          消息(<em>{{opertionCount}}</em>)
         </span>
       </router-link>
       <router-link tag="li" to="/runDaily/text">
@@ -18,7 +18,7 @@
           <p class="p2">发布近期煤电油运相关运行日报</p>
         </div>
         <span class="right">
-          收藏(<em>12</em>)
+          收藏(<em>{{staffFileCount}}</em>)
         </span>
       </router-link>
       <router-link tag="li" to="/queryIndex">
@@ -32,8 +32,31 @@
   </div>
 </template>
 <script>
+  import {APPINDEXCOUNT} from '../../../utils/api'
+
   export default {
-      name: 'Jcontent'
+      name: 'Jcontent',
+      created() {
+        this.$ajax.get(APPINDEXCOUNT,{
+            params: {
+                TOKEN: window.localStorage.getItem('token')
+            }
+          })
+          .then (reponese => {
+                  this.staffFileCount = reponese.data.entity.staffFileCount;
+                  this.opertionCount = reponese.data.entity.opertionCount;
+
+          })
+          .catch(error => {
+
+          })
+      },
+      data() {
+          return {
+              staffFileCount: '',
+              opertionCount: ''
+          }
+      }
   }
 </script>
 <style lang="scss">

@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div class="table-wrapper" v-if="model && model.length">
+  <div class="table-wrapper" v-if="model && model.entity">
     <div class="scrollable">
      <table class="responsive" >
     <tbody>

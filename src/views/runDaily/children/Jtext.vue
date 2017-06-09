@@ -31,14 +31,29 @@
             datarows: []
           }
     },
+      created() {
+          this.$ajax.get(REPORTWORDOUTLISTPAGE, {
+              params: {
+                  TEMPLATE_ID: 'c6ef4b1c7e024477a33478cb6a8601a8',
+                  TOKEN: window.localStorage.getItem('token'),
+                  page: '1',
+                  rows: '10'
+              }
+          })
+          .then(response => {
+              this.datarows = response.data.rows;
+            })
+      .catch(function (error) {
+              console.log(error);
+          });
+      },
     methods: {
           showTime () {
             var that = this;
             var datePicker = new DateTimePicker.Date(options, config)
             datePicker.on('selected', function (formatDate, now) {
                 that.dataText = formatDate;
-                let url = REPORTWORDOUTLISTPAGE;
-              that.$ajax.get(url, {
+              that.$ajax.get(REPORTWORDOUTLISTPAGE, {
                   params: {
                     TEMPLATE_ID: 'c6ef4b1c7e024477a33478cb6a8601a8',
                     SJ: formatDate,
@@ -47,7 +62,6 @@
 
                 })
                   .then(response => {
-                    console.log(response.data);
                     that.datarows = response.data.rows;
                   })
                   .catch(function (error) {

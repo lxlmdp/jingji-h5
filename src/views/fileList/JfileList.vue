@@ -45,12 +45,33 @@
 </template>
 <script>
   import Jheader from '../../components/Jheader'
+  import {FILELIST} from '../../utils/api'
 
   export default {
     name:'JfileList',
     components: {
         Jheader
-    }
+    },
+      created() {
+        this.$ajax.get(FILELIST,{
+            params: {
+                page:'1',
+                rows: '10',
+                TOKEN: window.localStorage.getItem('token')
+            }
+        })
+            .then(response => {
+                console.log(reponse.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+      },
+      data() {
+        return {
+
+        }
+      }
   }
 </script>
 <style lang="scss">

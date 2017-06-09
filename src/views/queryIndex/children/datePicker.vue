@@ -2,23 +2,61 @@
   <div id="datePicker">
       <div class="dateCon">
         <div class="top">
-          <p>{{initYear}}</p>
-          <p>{{initYear}}年{{initMonth}}月</p>
+          <span @click="yearLeft" class="left">&lt;</span>
+          {{initYear}}
+          <span @click="yearRight" class="right">&gt;</span>
         </div>
         <ul class="month">
-          <li v-for="month in initMonthArr">{{month}}月  </li>
+          <month v-on:selectThis="selectThis" v-for="month in initMonthArr"
+                 class="item"
+                 :month="month"
+          :year="initYear"
+          :dateArr="dateArr">
+          </month>
         </ul>
+        <div class="dateBtn">
+          <button v-on:click="cancel">取消</button>
+          <button v-on:click="define">确定</button>
+        </div>
       </div>
   </div>
 </template>
 <script>
+  import month from './month.vue'
+  import Vue from 'vue'
   export default {
       name: 'datePicker',
       data() {
           return {
-              initYear: new Date().getFullYear(),
+            initYear: new Date().getFullYear(),
             initMonth: '1',
-            initMonthArr: [1,2,3,4,5,6,7,8,9,10,11,12]
+            initMonthArr: [1,2,3,4,5,6,7,8,9,10,11,12],
+              dateArr:[]
+          }
+      },
+      components: {
+        month
+      },
+      methods: {
+          define() {
+              this.$emit('define',this.dateArr);
+          },
+          cancel() {
+              this.$emit('define')
+          },
+          yearLeft() {
+              this.initYear--;
+          },
+          yearRight() {
+              this.initYear++;
+          },
+          selectThis(date) {
+            var index = this.dateArr.indexOf(date);
+             if(index > -1) {
+             this.dateArr.splice(index,1)
+             }else {
+             this.dateArr.push(date);
+             }
           }
       }
   }
@@ -51,29 +89,35 @@
       user-select: none;
       background-color: #fff;
     .top {
-      height:60px;
+      position: relative;
+      height:40px;
       text-align: center;
+      line-height: 40px;
+      .left {
+        position: absolute;
+        left:20px;
+      }
+      .right {
+        position: absolute;
+        right:20px;
+      }
     }
       .month {
         @include flexBox()
-      justify-content: center;
+        justify-content: center;
         flex-flow: row wrap;
         align-content: flex-start;
         border-top: 1px solid #ccc;
-        li {
-          -webkit-box-flex: 1;
-          -ms-flex: 1;
-          flex: 1;
-          box-sizing: border-box;
-          background-color: white;
-          flex: 0 0 33.33%;
-          height: 50px;
-          text-align: center;
-          line-height: 50px;
-          border-left: 1px solid #ccc;
-          border-bottom: 1px solid #ccc;
-        }
       }
+  .dateBtn {
+    margin-left: 180px;
+    margin-top: 8px;
+    button {
+      padding: 4px 8px;
+      border: 1px solid #ccc;
+      background-color: transparent;
+    }
+  }
     }
   }
 </style>

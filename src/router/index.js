@@ -12,6 +12,7 @@ const SelectIndex = r => require.ensure([],() => r(require('../views/queryIndex/
 
 
 const WorkInfomation = r => require.ensure([],() => r(require('../views/workInformation/wrokInfomation')),'wrokInfomation')
+const InfomationCon = r => require.ensure([],() => r(require('../views/workInformation/children/InfomationCon')),'InfomationCon')
 const RunDaily = r => require.ensure([],() => r(require('../views/runDaily/runDaily')),'runDaily')
 const Jtext = r => require.ensure([],() => r(require('../views/runDaily/children/Jtext')),'Jtext')
 const JtextCon = r => require.ensure([],() => r(require('../views/runDaily/children/JtextCon')),'JtextCon')
@@ -78,6 +79,10 @@ export default new Router({
         {
           path: 'textCon',
           component: JtextCon
+        },
+        {
+          path: 'InfomationCon',
+          component: InfomationCon
         }
       ]
     }

@@ -1,14 +1,14 @@
 <template>
   <div id="textCon">
-    <jheader go-back="true" head-title="煤电油运运行日报"></jheader>
+    <jheader go-back="true" type="collect"  head-title="煤电油运运行日报" v-on:collect="collect"></jheader>
     <div class="htmlCon" v-html="libText"></div>
-    <a v-bind:href="'https://docs.google.com/gview?embedded=true&url='+data.FILE_URL">{{data.FILE_URL}}</a>
-    <a href="https://docs.google.com/gview?embedded=true&url=https://contents.netbk.co.jp/pc/pdf/pr/20150130_fs.pdf">11</a>
+    <!--<a v-bind:href="'https://docs.google.com/gview?embedded=true&url='+data.FILE_URL">{{data.FILE_URL}}</a>-->
   </div>
 </template>
 <script>
   import Jheader from '../../../components/Jheader'
-  import {FINDREPORTWORDBYID} from '../../../utils/api'
+  import {FINDREPORTWORDBYID,APPINDEXCOUNT} from '../../../utils/api'
+
   export default {
     name: 'JtextCon',
     data() {
@@ -41,7 +41,27 @@
     },
     components: {
           Jheader
-    }
+    },
+      methods: {
+          collect() {
+              console.log('collect');
+              this.$ajax.get(APPINDEXCOUNT,{
+                  params: {
+                      ID: this.$route.query.ID,
+                      TYPE: '0',
+                      TOKEN: window.localStorage.getItem('token'),
+
+                  }
+              })
+                  .then(response => {
+                      console.log(response.data);
+
+                  })
+                  .catch(err => {
+                      console.log(err);
+                  })
+          }
+      }
   }
 </script>
 <style lang="scss">

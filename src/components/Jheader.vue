@@ -9,6 +9,9 @@
       </div>
     </template>
     <span v-on:click="save" class="right">{{rightText}}</span>
+    <template v-if="type == 'collect'">
+      <i v-on:click="collect" class="right iconStar"></i>
+    </template>
   </div>
 </template>
 <script>
@@ -18,6 +21,9 @@
     methods: {
       save() {
         this.$emit('save')
+      },
+      collect() {
+        this.$emit('collect')
       }
     }
   }
@@ -35,6 +41,12 @@
     background-color: $allColor;
     line-height: 54px;
     z-index: 9;
+    transform: translateZ(0);
+    -moz-transform: translatez(0);
+    -ms-transform: translatez(0);
+    -o-transform: translatez(0);
+    -webkit-transform: translateZ(0);
+    -webkit-font-smoothing: antialiased;
     h1 {
       color: $bg;
       text-align: center;
@@ -89,5 +101,16 @@
     color: $allColor;
   }
     }
+  .iconStar {
+    width: rem(41);
+    height: rem(39);
+    background: url("../images/star.png") center no-repeat;
+    background-size: cover;
+    top: 17px;
+  }
+  .starSelect {
+    background: url("../images/star1.png") center no-repeat;
+    background-size: cover;
+  }
   }
 </style>
