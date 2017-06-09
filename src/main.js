@@ -6,12 +6,14 @@ import App from './App'
 import router from './router'
 import Toast from 'vue-easy-toast/dist/vue-easy-toast-lite.min.js'
 require('vue-easy-toast/dist/vue-easy-toast.css')
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 import axios from 'axios'
 
 
 //region 插件
 Vue.use(Toast)
+Vue.use(VueAwesomeSwiper)
 //endregion
 Vue.config.productionTip = false
 Vue.prototype.$ajax = axios

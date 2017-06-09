@@ -1,22 +1,32 @@
 <template>
-    <!--<li  v-for="(model, index) in model.indexList">
-        <div class="checkbox"
-             @click="selectClick($event)"></div>{{model.indexName}}</li>-->
     <li>
         <div class="zhibiaocheckbox"
-             v-on:click="selectClick($event)"></div>{{model.indexName}}
+             v-on:click="selectClick($event)" v-bind:class="{zhibiaoselect: isSelect()}"></div>{{model.indexName}}
     </li>
 </template>
 <script>
 export default {
     name: 'item2',
     props: {
-        model: Object
+        model: Object,
+        selectData: Object
     },
+
     methods: {
         selectClick(e) {
-            e.target.classList.toggle('zhibiaoselect');
             this.$emit('selectClick',this.model)
+        },
+        isSelect() {
+            let that = this;
+            let arr = this.selectData.items;
+            for(let i=0; i<arr.length; i++ ) {
+                for(let j=0; j<arr[i].indexList.length; j++) {
+                    if(arr[i].indexList[j] == that.model) {
+                        return true;
+                    }
+                }
+            }
+            return false;
         }
     }
 }

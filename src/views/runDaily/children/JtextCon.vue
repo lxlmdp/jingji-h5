@@ -2,6 +2,19 @@
   <div id="textCon">
     <jheader go-back="true" type="collect"  head-title="煤电油运运行日报" v-on:collect="collect"></jheader>
     <div class="htmlCon" v-html="libText"></div>
+    <div class="baobiaoBtn">
+      <span @click="showTable">{{showTableText}}</span>
+    </div>
+    <table v-show="showBaobiao" border="1">
+      <tr>
+        <td>name</td>
+        <td>value</td>
+      </tr>
+      <tr v-for="data in data.DATA">
+        <td>{{data.NAME_CH}}</td>
+        <td>{{data.VALUE}}</td>
+      </tr>
+    </table>
     <!--<a v-bind:href="'https://docs.google.com/gview?embedded=true&url='+data.FILE_URL">{{data.FILE_URL}}</a>-->
   </div>
 </template>
@@ -14,7 +27,9 @@
     data() {
       return {
         ID: this.$route.query.ID,
-        data: {}
+        data: {},
+        showBaobiao: false,
+        showTableText: '查看报表'
       }
     },
     created(){
@@ -60,6 +75,10 @@
                   .catch(err => {
                       console.log(err);
                   })
+          },
+          showTable() {
+              this.showTableText == '查看报表' ? this.showTableText = '隐藏报表' : this.showTableText = '查看报表';
+              this.showBaobiao = !this.showBaobiao;
           }
       }
   }
@@ -74,6 +93,19 @@
     z-index: 99;
     background-color: #fff;
     overflow: hidden;
+    .baobiaoBtn {
+      span {
+        width: 100px;
+        margin: 0 auto;
+        text-align: center;
+        display: block;
+        background-color: #1055f1;
+        color: #fff;
+        padding: 6px 0;
+        border-radius: 4px;
+
+      }
+    }
   }
   .htmlCon {
     margin-top: 60px;

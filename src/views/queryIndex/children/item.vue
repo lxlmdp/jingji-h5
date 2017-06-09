@@ -11,7 +11,7 @@
       <item1
         class="item"
         v-for="model in model.items"
-        :model="model" v-on:selectClick="itemsParent">
+        :model="model" :selectData="dateObject" v-on:selectClick="itemsParent">
       </item1>
     </ul>
   </li>
@@ -60,7 +60,7 @@
         }
       },
       itemsParent:function (item) {
-        let arr =  this.dateObject.items
+        let arr =  this.dateObject.items;
         let index = arr.indexOf(item);
         if(index > -1) {
             arr[index] = item;
@@ -72,7 +72,6 @@
                 arr.splice(this.dateObject.items[i],1)
             }
         }
-        console.log(this.dateObject);
         this.$emit('dateObject',this.dateObject);
       }
     }

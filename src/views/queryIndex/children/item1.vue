@@ -10,7 +10,7 @@
         <div class="checkbox"
              v-on:click="selectClick(model,$event)"></div>{{model.indexName}}</li>-->
         <item2 v-for="model in model.indexList" :model="model"
-        v-on:selectClick="selectClick"></item2>
+        v-on:selectClick="selectClick" :selectData="selectData"></item2>
 
     </ul>
   </li>
@@ -21,7 +21,8 @@
   export default {
     name: 'item1',
     props: {
-      model: Object
+      model: Object,
+      selectData: Object
     },
     components: {
       item2
@@ -60,7 +61,6 @@
       selectClick : function (model) {
           let index = this.thisObject.indexList.indexOf(model);
           if(index > -1) {
-              console.log('splice');
               this.thisObject.indexList.splice(index,1)
           }else {
               this.thisObject.indexList.push(model);
