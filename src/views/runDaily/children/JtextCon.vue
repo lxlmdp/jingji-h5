@@ -1,6 +1,6 @@
 <template>
   <div id="textCon">
-    <jheader go-back="true" type="collect"  head-title="煤电油运运行日报" v-on:collect="collect"></jheader>
+    <jheader go-back="true" type="collect"  head-title="煤电油运运行日报" v-on:collect="collect" v-bind:is-select="selectStarDate"></jheader>
     <div class="htmlCon" v-html="libText"></div>
     <div class="baobiaoBtn">
       <span @click="showTable">{{showTableText}}</span>
@@ -20,7 +20,7 @@
 </template>
 <script>
   import Jheader from '../../../components/Jheader'
-  import {FINDREPORTWORDBYID,APPINDEXCOUNT} from '../../../utils/api'
+  import {FINDREPORTWORDBYID,APPINDEXCOUNT,FILESAVE,FILEINFO} from '../../../utils/api'
 
   export default {
     name: 'JtextCon',
@@ -29,24 +29,46 @@
         ID: this.$route.query.ID,
         data: {},
         showBaobiao: false,
-        showTableText: '查看报表'
+        showTableText: '查看报表',
+          selectStarDate: 'false'
       }
     },
     created(){
         let url = FINDREPORTWORDBYID;
-      this.$ajax.get(FINDREPORTWORDBYID,{
-          params: {
-              ID: this.$route.query.ID,
-            TOKEN: window.localStorage.getItem('token')
-          }
-      })
-        .then(response => {
-            console.log(response.data);
-            this.data = response.data.entity;
+        if(this.$route.query.ID) {
+            this.$ajax.get(FINDREPORTWORDBYID,{
+                params: {
+                    ID: this.$route.query.ID,
+                    TOKEN: window.localStorage.getItem('token')
+                }
+            })
+                .then(response => {
+                this.data = response.data.entity;
+            if(response.data.entity.IS_COLLET !== 0) {
+                this.selectStarDate = 'true';
+            }
         })
         .catch(function (error) {
-          console.log(error);
-        });
+                console.log(error);
+            });
+        }else  {
+            this.$ajax.get(FILEINFO,{
+                params: {
+                    FILE_ID: this.$route.query.FILE_ID,
+                    TOKEN: window.localStorage.getItem('token')
+                }
+            })
+                .then(response => {
+                this.data = response.data.entity;
+            if(response.data.entity.IS_COLLET !== 0) {
+                this.selectStarDate = 'true';
+            }
+        })
+        .catch(function (error) {
+                console.log(error);
+            });
+        }
+
     },
     computed: {
       libText:function(){
@@ -59,8 +81,7 @@
     },
       methods: {
           collect() {
-              console.log('collect');
-              this.$ajax.get(APPINDEXCOUNT,{
+              this.$ajax.get(FILESAVE,{
                   params: {
                       ID: this.$route.query.ID,
                       TYPE: '0',
@@ -70,7 +91,7 @@
               })
                   .then(response => {
                       console.log(response.data);
-
+                      this.selectStarDate = 'true';
                   })
                   .catch(err => {
                       console.log(err);
@@ -79,6 +100,10 @@
           showTable() {
               this.showTableText == '查看报表' ? this.showTableText = '隐藏报表' : this.showTableText = '查看报表';
               this.showBaobiao = !this.showBaobiao;
+          },
+          selectStar() {
+              console.log(this.selectStarDate);
+              return this.selectStarDate;
           }
       }
   }
@@ -108,6 +133,8 @@
     }
   }
   .htmlCon {
-    margin-top: 60px;
+    margin-top: 70px;
+    padding: 0 20px;
+    line-height: 1.5;
   }
 </style>

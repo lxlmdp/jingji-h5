@@ -6,6 +6,9 @@ export const REPORTWORDOUTLISTPAGE = SERVER + 'app/service?METHOD=reportWord_rep
 // 日报详情页
 export const FINDREPORTWORDBYID= SERVER + 'app/service?METHOD=reportWord_findReportWordById'
 
+//收藏文件详情
+export const  FILEINFO = SERVER + 'app/service?METHOD=staff_file_info'
+
 //修改密码
 export const CHANGEPSW = SERVER+ 'app/service?METHOD=staff_editpwd'
 

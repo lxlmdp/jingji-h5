@@ -10,14 +10,14 @@
     </template>
     <span v-on:click="save" class="right">{{rightText}}</span>
     <template v-if="type == 'collect'">
-      <i v-on:click="collect" class="right iconStar"></i>
+      <i v-on:click="collect" class="right iconStar" v-bind:class = "{'starSelect':isSelect == 'true'} "></i>
     </template>
   </div>
 </template>
 <script>
   export default{
       name: 'Jheader',
-      props: ['headTitle','goBack','rightText','type'],
+      props: ['headTitle','goBack','rightText','type','isSelect'],
     methods: {
       save() {
         this.$emit('save')

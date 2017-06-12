@@ -1,5 +1,5 @@
 <template>
-    <li class="monthList" :class="{monthselect: isSelect}"
+    <li class="monthList" :class="{monthselect: isSelectMonth()}"
         v-on:click="selectThis">
         {{month}}月
     </li>
@@ -13,14 +13,14 @@ export default{
         dateArr: Array
     },
     watch: {
-        year: function (val) {
+        /*year: function (val) {
             this.isSelect = false;
             let date = this.year + '年' + this.month + '月';
             let index = this.dateArr.indexOf(date);
             if(index > -1) {
                 this.isSelect = true;
             }
-        }
+        }*/
     },
     data() {
         return {
@@ -32,7 +32,14 @@ export default{
             this.isSelect = ! this.isSelect;
             let date = this.year + '年' + this.month + '月';
             this.$emit('selectThis',date)
-
+        },
+        isSelectMonth() {
+            let date = this.year + '年' + this.month + '月';
+            let index = this.dateArr.indexOf(date);
+            if(index > -1) {
+                return true;
+            }
+            return false;
         }
     }
 }

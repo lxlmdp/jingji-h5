@@ -15,6 +15,7 @@
           </month>
         </ul>
         <div class="dateBtn">
+          <span>{{dateArr.length}}</span>
           <button v-on:click="cancel">取消</button>
           <button v-on:click="define">确定</button>
         </div>
@@ -26,12 +27,15 @@
   import Vue from 'vue'
   export default {
       name: 'datePicker',
+      props: {
+        date: Array
+      },
       data() {
           return {
             initYear: new Date().getFullYear(),
             initMonth: '1',
             initMonthArr: [1,2,3,4,5,6,7,8,9,10,11,12],
-              dateArr:[]
+              dateArr:this.date || []
           }
       },
       components: {

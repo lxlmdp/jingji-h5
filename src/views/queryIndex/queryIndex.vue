@@ -3,10 +3,15 @@
     <jheader go-back="true" head-title="经济运行月度重要指标"></jheader>
     <div class="con">
         <div class="selectBtn">
-          <div @click="timePoint" class="btn">按时间点</div>
-          <div @click="selectIndex"  class="btn" tag="div">
-            请选择指标
-          </div>
+          <div @click="timePoint" class="btn">{{initTimeDate}}</div>
+
+            <!--<div v-for="zhibiao in zhibiaoArr" class="btn">-->
+                <!--{{zhibiao}}-->
+            <!--</div>-->
+
+            <div @click="selectIndex" class="btn">
+                请选择指标
+            </div>
         </div>
         <div class="timeCon">
           <div v-for="time in timeArr">{{time}}</div>
@@ -20,7 +25,7 @@
       </item>
       <button class="confirmBtn" @click="closeSelect">确定</button>
     </ul>
-    <datePicker v-if="selectDate" v-on:define="define"></datePicker>
+    <datePicker v-if="selectDate" v-on:define="define" :date="timeArr"></datePicker>
   </div>
 </template>
 <script>
@@ -47,12 +52,15 @@
         selectZhibiao: false,
         tableData: {},
         selectDate: false,
-        dataObject:{}
+        dataObject:{},
+        initTimeDate: new Date().getFullYear() + '年' + (new Date().getMonth() + 1) + '月',
+        zhibiaoArr: ['GDP','工业','煤炭行业']
 
       }
 
     },
     created(){
+        this.initAjax();
 
     },
     methods: {
@@ -61,7 +69,7 @@
         },
         define(val) {
             console.log(val);
-            this.timeArr = val;
+            this.timeArr = val || [];
           this.selectDate = false;
         },
         timePeriod () {
@@ -129,14 +137,51 @@
             .then(reponese => {
                 this.tableData  = reponese.data;
                 this.selectZhibiao = false;
-                console.log( this.tableData)
-
             })
             .catch(function (error) {
               console.log(error);
             });
 
-      }
+      },
+        initAjax() {
+            this.$ajax.get(APPINDEXS,{
+                params: {
+                    TOKEN: window.localStorage.getItem('token')
+                }
+            })
+            .then(response => {
+                this.selectData = response.data.entity.data;
+                let data = this.selectData[1];
+                console.log(data);
+                this.showTable(data);
+
+            })
+            .catch(function (error) {
+                    console.log(error);
+                });
+
+
+        },
+        showTable(data) {
+            console.log('showTable')
+
+            data.TIME_SPAN = '0' ;
+            data.SJ_TYPE = '1';
+            data.DATE_POINTS = [this.initTimeDate];
+            console.log(data)
+            this.$ajax.post(INDEXTABLE,qs.stringify({
+                DATA: JSON.stringify(data),
+                TOKEN: window.localStorage.getItem('token')
+            }))
+                .then(reponese => {
+                this.tableData  = reponese.data;
+
+        })
+        .catch(function (error) {
+                console.log(error);
+            });
+        }
+
     }
   }
 </script>
@@ -162,7 +207,7 @@
         .btn {
           padding: 10px 0;
           background-color: #fff;
-          width: 30%;
+          width: 22%;
           margin-right: 3%;
           float: left;
           margin-top: 10px;

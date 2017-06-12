@@ -63,6 +63,9 @@
                 })
                   .then(response => {
                     that.datarows = response.data.rows;
+                    if(response.data.rows.length) {
+                        that.$router.push({ path: '/textCon', query: { ID: response.data.rows[0].ID }});
+                    }
                   })
                   .catch(function (error) {
                     console.log(error);

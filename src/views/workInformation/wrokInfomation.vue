@@ -6,7 +6,11 @@
         <router-link v-for="row in rows" tag="li" v-bind:class="{ select: row.IF_READ == '0' }"
                      :to="{ path: '/InfomationCon',query: { DATA_ID: row.DATA_ID }}">
           <p class="p1">{{row.TITLE_NAME}}</p>
-          <p class="p2">工作通知<em>{{convert(row.CREATE_TIME)}}</em></p>
+          <p class="p2">{{convert(row.CREATE_TIME)}}</p>
+          <span v-on:click.stop="listCollect(row.DATA_ID)" class="collectBtn">
+            <span v-if="row.IS_COLLET === 0">收藏</span>
+            <span v-else>已收藏</span>
+          </span>
         </router-link>
 
       </ul>
@@ -15,7 +19,7 @@
 </template>
 <script>
   import Jheader from '../../components/Jheader'
-  import {RELLIST} from '../../utils/api'
+  import {RELLIST,FILESAVE} from '../../utils/api'
   import {convertDate} from '../../utils/util'
 
   export default {
@@ -38,8 +42,24 @@
         })
     },
       methods: {
-          convert: function (date) {
+          convert (date) {
               return  convertDate(date,'YYYY-MM-DD');;
+          },
+          listCollect (id) {
+            console.log(id);
+            this.$ajax.get(FILESAVE,{
+                params: {
+                    TOKEN: window.localStorage.getItem('token'),
+                    ID: id,
+                    TYPE: '1'
+                }
+            })
+                .then(response => {
+                    console.log(response);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
           }
       },
     components: {
@@ -71,6 +91,7 @@
   ul {
     overflow-y: auto;
   li {
+    position: relative;
     padding: rem(30) rem(30) rem(10) rem(80);
     margin-bottom: rem(10);
     background-color: $bg;
@@ -90,6 +111,18 @@
     left:rem(40);
     font-weight: 200;
   }
+
+  }
+  .collectBtn{
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+    color: #fff;
+    padding: 0px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    background-color: #1055f1;
+    line-height: 2;
   }
 
   }
@@ -105,5 +138,6 @@
   }
   }
   }
+
   }
 </style>
