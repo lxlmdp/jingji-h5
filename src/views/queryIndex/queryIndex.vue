@@ -3,29 +3,37 @@
     <jheader go-back="true" head-title="经济运行月度重要指标"></jheader>
     <div class="con">
         <div class="selectBtn">
-          <div @click="timePoint" class="btn">{{initTimeDate}}</div>
+          <div @click="timePoint" class="btn">{{timeArr[0] || initTimeDate}}</div>
 
-            <!--<div v-for="zhibiao in zhibiaoArr" class="btn">-->
-                <!--{{zhibiao}}-->
-            <!--</div>-->
-
-            <div @click="selectIndex" class="btn">
-                请选择指标
+            <!--<div v-for="zhibiao in zhibiaoArr" class="btn" >
+                {{zhibiao}}
+            </div>-->
+            <div @click="initZhibiaoIndex = '2' " class="btn" :class="{zhibiaoIndex: initZhibiaoIndex == '2'}">
+                煤炭行业
             </div>
-        </div>
-        <div class="timeCon">
-          <div v-for="time in timeArr">{{time}}</div>
+            <div @click="initZhibiaoIndex = '3' " class="btn" :class="{zhibiaoIndex: initZhibiaoIndex == '3'}">
+                电力行业
+            </div>
+            <div @click="selectIndex" class="btn">
+                更多指标
+            </div>
         </div>
         <jtable :model="tableData"></jtable>
     </div>
-    <ul v-show="selectZhibiao" class="zhibiaoCon">
-      <item v-on:dateObject="dateObject" v-for="data in selectData"
-             class="item"
-             :model="data">
-      </item>
+    <div v-show="selectZhibiao" class="zhibiaoCon">
+      <!--<item v-on:dateObject="dateObject" v-for="data in selectData"-->
+             <!--class="item"-->
+             <!--:model="data">-->
+      <!--</item>-->
+        <itemTree v-for="data in selectData" :model="data">
+
+        </itemTree>
+
+
       <button class="confirmBtn" @click="closeSelect">确定</button>
-    </ul>
+    </div>
     <datePicker v-if="selectDate" v-on:define="define" :date="timeArr"></datePicker>
+      <Jloading v-show="showLoading"></Jloading>
   </div>
 </template>
 <script>
@@ -36,6 +44,8 @@
   import qs from 'qs'
   import datePicker from './children/datePicker'
   import Vue from 'vue'
+  import itemTree from './children/itemTree.vue'
+  import Jloading from '../../components/loading/Jloading'
 
   export default {
     name: 'queryIndex',
@@ -43,10 +53,13 @@
         Jheader,
         Jtable,
       item,
-      datePicker
+      datePicker,
+        itemTree,
+        Jloading
     },
     data() {
       return {
+          showLoading: false,
         timeArr : [],
         selectData : [],
         selectZhibiao: false,
@@ -54,22 +67,29 @@
         selectDate: false,
         dataObject:{},
         initTimeDate: new Date().getFullYear() + '年' + (new Date().getMonth() + 1) + '月',
-        zhibiaoArr: ['GDP','工业','煤炭行业']
+        zhibiaoArr: ['煤炭行业','电力行业'],
+          initZhibiaoIndex: '2'
 
       }
-
     },
     created(){
+        this.timeArr.push(this.initTimeDate);
         this.initAjax();
+        this.showLoading = true;
 
+    },
+    watch: {
+        initZhibiaoIndex: function (){
+            this.showLoading = true;
+            this.initAjax()
+        }
     },
     methods: {
         timePoint ()  {
           this.selectDate = true
         },
         define(val) {
-            console.log(val);
-            this.timeArr = val || [];
+          this.timeArr = val || [];
           this.selectDate = false;
         },
         timePeriod () {
@@ -151,10 +171,8 @@
             })
             .then(response => {
                 this.selectData = response.data.entity.data;
-                let data = this.selectData[1];
-                console.log(data);
+                let data = this.selectData[this.initZhibiaoIndex];
                 this.showTable(data);
-
             })
             .catch(function (error) {
                     console.log(error);
@@ -163,18 +181,19 @@
 
         },
         showTable(data) {
-            console.log('showTable')
 
+            data.periodType = '0';
             data.TIME_SPAN = '0' ;
             data.SJ_TYPE = '1';
             data.DATE_POINTS = [this.initTimeDate];
-            console.log(data)
+
             this.$ajax.post(INDEXTABLE,qs.stringify({
                 DATA: JSON.stringify(data),
                 TOKEN: window.localStorage.getItem('token')
             }))
-                .then(reponese => {
-                this.tableData  = reponese.data;
+                .then(response => {
+                this.showLoading = false;
+                this.tableData  = response.data;
 
         })
         .catch(function (error) {
@@ -204,6 +223,7 @@
         height: rem(120);
         background-color: #f3f3f3;
         padding-left:3%;
+      margin-bottom: 20px;
         .btn {
           padding: 10px 0;
           background-color: #fff;
@@ -212,6 +232,10 @@
           float: left;
           margin-top: 10px;
           text-align: center;
+        }
+        .zhibiaoIndex {
+            background-color: #1055f1;
+            color: #fff;
         }
       }
     }

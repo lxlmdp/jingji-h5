@@ -68,10 +68,14 @@
     height: 100%;
     padding-bottom: rem(120);
     background-color: $bgColor;
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
+
     padding-top: 54px;
     .conList {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow-y:auto;
+        -webkit-overflow-scrolling:touch;
       ul {
         overflow-y: auto;
         li {

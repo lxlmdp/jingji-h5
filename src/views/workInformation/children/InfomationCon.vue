@@ -23,47 +23,45 @@
 </template>
 <script>
     import Jheader from '../../../components/Jheader.vue'
-    import {RELINFO,FILESAVE,FILEINFO} from '../../../utils/api'
+    import {RELINFO,FILESAVE,FILEINFO,UPDATEIFDELETE} from '../../../utils/api'
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
     import pdf from 'vue-pdf'
 
     export default {
         name: 'InfomationCon',
         created() {
+            let params = {}
+            let url = null;
+
             if(this.$route.query.DATA_ID) {
-                this.$ajax.get(RELINFO,{
-                    params: {
-                        DATA_ID: this.$route.query.DATA_ID,
-                        TOKEN: window.localStorage.getItem('token')
-                    }
-                })
-                    .then(reponse => {
-//                this.swiperData = reponese.data.entity.FILE_URL.split(",");
-                        this.swiperData = ['https://o82zr1kfu.qnssl.com/@/image/5628a260e4b0a38598cb4103.jpg','http://118.190.40.178:7070/mhtml/static/test.pdf']
-                        if(reponse.data.entity.IS_COLLET !== 0) {
-                            this.selectStarDate = 'true';
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
+                url = RELINFO;
+                params = {
+                    DATA_ID: this.$route.query.DATA_ID,
+                    TOKEN: window.localStorage.getItem('token')
+                };
+
             }else {
-                this.$ajax.get(FILEINFO,{
-                    params: {
-                        FILE_ID: this.$route.query.FILE_ID,
-                        TOKEN: window.localStorage.getItem('token')
+                url = FILEINFO;
+                params = {
+                    FILE_ID: this.$route.query.FILE_ID,
+                    TOKEN: window.localStorage.getItem('token')
+                };
+            }
+            this.$ajax.get(url,{
+                params: params
+            })
+                .then(response => {
+                    this.data = response.data.entity;
+//                this.swiperData = response.data.entity.FILE_URL.split(",");
+                    this.swiperData = ['https://o82zr1kfu.qnssl.com/@/image/5628a260e4b0a38598cb4103.jpg','http://118.190.40.178:7070/mhtml/static/test.pdf']
+                    console.log(response.data.entity.IS_COLLET);
+                    if(response.data.entity.IS_COLLET !== 0) {
+                        this.selectStarDate = 'true';
                     }
                 })
-                    .then(reponse => {
-                        this.swiperData = reponse.data.entity.FILE_URL.split(",");
-                        if(reponse.data.entity.IS_COLLET !== 0) {
-                            this.selectStarDate = 'true';
-                        }
-                    })
-                    .catch(err => {
-                        console.log(err)
-                    })
-            }
+                .catch(err => {
+                    console.log(err)
+                })
 
         },
         data() {
@@ -84,6 +82,7 @@
                     // more Swiper configs and callbacks...
                     // ...
                 },
+                data: {},
                 swiperData: [],
                 selectStarDate: 'false'
             }
@@ -102,15 +101,25 @@
                 }
             },
             jingjiCollect() {
-                this.$ajax.get(FILESAVE,{
+                let url = null;
+                if(this.selectStarDate == 'true') {
+                    url =  UPDATEIFDELETE;
+                }else {
+                    url = FILESAVE;
+                }
+                this.$ajax.get(url,{
                     params: {
                         TOKEN: window.localStorage.getItem('token'),
-                        ID: this.$route.query.DATA_ID,
-                        TYPE: '1'
+                        ID: this.$route.query.DATA_ID || this.data.SRC_ID,
+                        TYPE: '1',
                     }
                 })
                     .then(response => {
                         console.log(response);
+                        if(response.data.entity.IF_DELETED && response.data.entity.IF_DELETED !== 0) {
+                            this.selectStarDate = 'false';
+                            return;
+                        }
                         this.selectStarDate = 'true';
                     })
                     .catch(err => {

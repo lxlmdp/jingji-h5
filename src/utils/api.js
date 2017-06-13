@@ -1,6 +1,8 @@
 
 
-const SERVER = 'http://118.190.40.178:7070/'
+// const SERVER = 'http://118.190.40.178:7070/'
+const SERVER = 'http://192.168.1.117:8089/'
+
 //日报查询
 export const REPORTWORDOUTLISTPAGE = SERVER + 'app/service?METHOD=reportWord_reportWordOutlistPage'
 // 日报详情页
@@ -33,6 +35,11 @@ export const APPINDEXCOUNT = SERVER + 'app/service?METHOD=appIndexCount'
 //收藏（运行信息，日报）
 
 export const FILESAVE = SERVER + '/app/service?METHOD=staff_file_save'
+
+//取消收藏
+export const UPDATEIFDELETE = SERVER + '/app/service?METHOD=updateIfDelete'
+
+
 
 //相关文件列表（运行信息，日报）
 

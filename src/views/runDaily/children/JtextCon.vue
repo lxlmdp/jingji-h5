@@ -20,7 +20,7 @@
 </template>
 <script>
   import Jheader from '../../../components/Jheader'
-  import {FINDREPORTWORDBYID,APPINDEXCOUNT,FILESAVE,FILEINFO} from '../../../utils/api'
+  import {FINDREPORTWORDBYID,APPINDEXCOUNT,FILESAVE,FILEINFO,UPDATEIFDELETE} from '../../../utils/api'
 
   export default {
     name: 'JtextCon',
@@ -81,21 +81,33 @@
     },
       methods: {
           collect() {
-              this.$ajax.get(FILESAVE,{
+              //true 取消收藏
+              let url = null;
+              if(this.selectStarDate == 'true') {
+                  url = UPDATEIFDELETE;
+              }else {
+                  url = FILESAVE
+              }
+              this.$ajax.get(url,{
                   params: {
-                      ID: this.$route.query.ID,
+                      ID: this.$route.query.ID || this.data.SRC_ID,
                       TYPE: '0',
                       TOKEN: window.localStorage.getItem('token'),
-
                   }
               })
                   .then(response => {
-                      console.log(response.data);
+                      console.log(response.data)
+                      if(response.data.entity.IF_DELETED && response.data.entity.IF_DELETED !== 0) {
+                          this.selectStarDate = 'false';
+                          return;
+                      }
+
                       this.selectStarDate = 'true';
                   })
                   .catch(err => {
                       console.log(err);
                   })
+
           },
           showTable() {
               this.showTableText == '查看报表' ? this.showTableText = '隐藏报表' : this.showTableText = '查看报表';

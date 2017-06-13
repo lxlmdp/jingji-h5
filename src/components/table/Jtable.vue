@@ -5,7 +5,9 @@
      <table class="responsive" >
     <tbody>
     <tr>
-      <th v-for="data in model.entity.list">{{data.INDEXS[0].INDEX_NAME}}</th>
+      <th v-for="data in model.entity.list[0].INDEXS">
+        {{data.INDEX_NAME || '空值'}}
+      </th>
     </tr>
     <tr v-for="data in model.entity.list">
       <td v-for="value in data.INDEXS">{{value.VALUE || '空值'}}</td>

@@ -8,11 +8,14 @@
       {{model.industryName}}
     </div>
     <ul class="childrenUl" v-show="open" v-if="isFolder">
-      <item1
-        class="item"
-        v-for="model in model.items"
-        :model="model" :selectData="dateObject" v-on:selectClick="itemsParent">
-      </item1>
+      <!--<item1-->
+        <!--class="item"-->
+        <!--v-for="model in model.items"-->
+        <!--:model="model" :selectData="dateObject" v-on:selectClick="itemsParent">-->
+      <!--</item1>-->
+      <item>
+
+      </item>
     </ul>
   </li>
 

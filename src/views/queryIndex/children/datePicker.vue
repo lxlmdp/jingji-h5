@@ -1,6 +1,12 @@
 <template>
   <div id="datePicker">
       <div class="dateCon">
+        <div class="chosen">
+          <div>当前已选择{{dateArr.length}}个月</div>
+          <ul>
+            <li v-for="date in dateArr">{{date}}</li>
+          </ul>
+        </div>
         <div class="top">
           <span @click="yearLeft" class="left">&lt;</span>
           {{initYear}}
@@ -15,7 +21,8 @@
           </month>
         </ul>
         <div class="dateBtn">
-          <span>{{dateArr.length}}</span>
+
+          <button v-on:click="clearedDateArr">清除</button>
           <button v-on:click="cancel">取消</button>
           <button v-on:click="define">确定</button>
         </div>
@@ -46,7 +53,10 @@
               this.$emit('define',this.dateArr);
           },
           cancel() {
-              this.$emit('define')
+              this.$emit('define',[new Date().getFullYear() + '年' + (new Date().getMonth() + 1) + '月'])
+          },
+          clearedDateArr() {
+            this.dateArr = []
           },
           yearLeft() {
               this.initYear--;
@@ -84,7 +94,7 @@
       -webkit-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
       width: 280px;
-      height:280px;
+      padding:10px 0;
       opacity: 1;
       line-height: 1.5;
       box-shadow: 0 0 10px rgba(0, 0, 0, .8);
@@ -114,7 +124,7 @@
         border-top: 1px solid #ccc;
       }
   .dateBtn {
-    margin-left: 180px;
+    float: right;
     margin-top: 8px;
     button {
       padding: 4px 8px;
@@ -123,5 +133,17 @@
     }
   }
     }
+  .chosen {
+    margin: 0 20px;
+  overflow:hidden;
+    ul {
+    max-height: 36px;
+    overflow-y: auto;
+      li {
+        float: left;
+        margin-right: 10px;
+      }
+    }
+  }
   }
 </style>

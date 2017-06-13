@@ -7,7 +7,7 @@
                      :to="{ path: '/InfomationCon',query: { DATA_ID: row.DATA_ID }}">
           <p class="p1">{{row.TITLE_NAME}}</p>
           <p class="p2">{{convert(row.CREATE_TIME)}}</p>
-          <span v-on:click.stop="listCollect(row.DATA_ID)" class="collectBtn">
+          <span v-on:click.stop="listCollect(row)" class="collectBtn">
             <span v-if="row.IS_COLLET === 0">收藏</span>
             <span v-else>已收藏</span>
           </span>
@@ -45,17 +45,19 @@
           convert (date) {
               return  convertDate(date,'YYYY-MM-DD');;
           },
-          listCollect (id) {
-            console.log(id);
+          listCollect (row) {
+
             this.$ajax.get(FILESAVE,{
                 params: {
                     TOKEN: window.localStorage.getItem('token'),
-                    ID: id,
+                    ID: row.DATA_ID,
                     TYPE: '1'
                 }
             })
                 .then(response => {
                     console.log(response);
+                    row.IS_COLLET = 1;
+
                 })
                 .catch(err => {
                     console.log(err);
