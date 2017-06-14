@@ -4,7 +4,7 @@
 
         <swiper class="swiper" :options="swiperOption" ref="mySwiper">
 
-            <swiper-slide class="swiperSlide" v-for="swiper in swiperData">
+            <swiper-slide class="swiperSlide" v-for="(swiper,index) in swiperData" key="index">
                 <div v-if="isPdf(swiper)">
                     <pdf v-bind:src="swiper"></pdf>
                 </div>
@@ -137,6 +137,7 @@
         .swiper {
             width: 100%;
             margin-top: 54px;
+        height: 90%;
             .swiperSlide {
                 width: 100%;
                 img{

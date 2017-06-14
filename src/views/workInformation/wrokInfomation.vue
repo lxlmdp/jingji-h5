@@ -3,8 +3,8 @@
     <jheader go-back="true" head-title="经济运行工作信息"></jheader>
     <div class="conList">
       <ul>
-        <router-link v-for="row in rows" tag="li" v-bind:class="{ select: row.IF_READ == '0' }"
-                     :to="{ path: '/InfomationCon',query: { DATA_ID: row.DATA_ID }}">
+        <router-link v-for="(row,index) in rows" tag="li" v-bind:class="{ select: row.IF_READ == '0' }"
+                     :to="{ path: '/InfomationCon',query: { DATA_ID: row.DATA_ID }}" key="index">
           <p class="p1">{{row.TITLE_NAME}}</p>
           <p class="p2">{{convert(row.CREATE_TIME)}}</p>
           <span v-on:click.stop="listCollect(row)" class="collectBtn">
@@ -137,16 +137,18 @@
     border-radius: 6px;
     font-size: 12px;
     line-height: 2;
-
-    .starBtn {
+    i{
       display: block;
       width: rem(50);
       height: rem(50);
-      background: url("../../images/3_3.png") center no-repeat;
+    }
+    .starBtn {
+      background: url("../../images/collect.jpg") center no-repeat;
       background-size: contain;
     }
     .selectStarBtn {
-
+      background: url("../../images/collect_1.jpg") center no-repeat;
+      background-size: contain;
     }
   }
 

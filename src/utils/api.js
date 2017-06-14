@@ -2,6 +2,9 @@
 
 const SERVER = 'http://118.190.40.178:7070/'
 
+//登录
+const LOGIN = SERVER + '/app/login';
+
 //日报查询
 export const REPORTWORDOUTLISTPAGE = SERVER + 'app/service?METHOD=reportWord_reportWordOutlistPage'
 // 日报详情页

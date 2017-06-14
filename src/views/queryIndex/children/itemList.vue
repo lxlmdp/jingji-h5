@@ -1,19 +1,21 @@
 <template>
     <div id="itemList">
-        <div class="left">
+        <jheader head-title="请选择指标" v-on:save="closeSelect" right-text="确定"></jheader>
+        <div class="listLeft">
             <div @click="changeRightList(index)" class="leftList" v-for="(data, index) in model" :class="{leftSelect: index == leftSelectIndex}">
                 {{data.industryName}}
             </div>
 
         </div>
-        <div class="right" v-if="model[leftSelectIndex] && model[leftSelectIndex].items">
-            <itemList1 v-for="data in model[leftSelectIndex].items" v-on:itemList1Click="itemListClick" :model="data" :selectData="dateObject" :timeArr="timeArr"></itemList1>
+        <div class="listRight" v-if="model && model[leftSelectIndex]">
+            <itemList1 v-for="(data,index) in model[leftSelectIndex].items" v-on:itemList1Click="itemListClick" :model="data" :selectData="dateObject" :timeArr="timeArr" key="index"></itemList1>
         </div>
-        <button v-on:click="closeSelect" class="zhibiaosubmitBtn">确定</button>
+        <!--<button v-on:click="closeSelect" class="zhibiaosubmitBtn">确定</button>-->
     </div>
 </template>
 <script>
     import itemList1 from './itemList1'
+    import Jheader from '../../../components/Jheader'
 export default {
     name: 'itemList',
     props: {
@@ -22,7 +24,8 @@ export default {
         timeArr: Array
     },
     components: {
-        itemList1
+        itemList1,
+        Jheader
     },
     data() {
         return {
@@ -82,7 +85,8 @@ export default {
         z-index: 99;
         background-color: $bgColor;
         overflow: hidden;
-        .left {
+padding-top:54px;
+        .listLeft {
             position: relative;
             width: 30%;
             height: 100%;
@@ -100,7 +104,7 @@ export default {
                 background-color: #efeff4;
             }
         }
-        .right {
+        .listRight {
             position: relative;
             height: 100%;
             overflow-y: auto;

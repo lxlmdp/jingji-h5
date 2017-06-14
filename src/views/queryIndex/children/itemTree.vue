@@ -2,7 +2,7 @@
     <li  transition="slide" class="itemTree">
         <div @click="toggle">{{model.industryName || model.itemName || model.indexName}}</div>
         <ul v-show="open" v-if="isFolder">
-            <itemTree v-for="cel in model.items || model.indexList" :model="cel"></itemTree>
+            <itemTree v-for="(cel,index) in model.items || model.indexList" :model="cel" key="index"></itemTree>
         </ul>
     </li>
 </template>

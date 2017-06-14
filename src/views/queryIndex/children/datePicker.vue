@@ -13,11 +13,11 @@
           <span @click="yearRight" class="right">&gt;</span>
         </div>
         <ul class="month">
-          <month v-on:selectThis="selectThis" v-for="month in initMonthArr"
+          <month v-on:selectThis="selectThis" v-for="(month,index) in initMonthArr"
                  class="item"
                  :month="month"
           :year="initYear"
-          :dateArr="dateArr">
+          :dateArr="dateArr" key="index">
           </month>
         </ul>
         <div class="dateBtn">

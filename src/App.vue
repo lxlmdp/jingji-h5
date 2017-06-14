@@ -6,9 +6,9 @@
 </template>
 
 <script>
-import Jfooter from './components/Jfooter'
-import {getUrlKey} from './utils/native'
-import Vue from 'vue'
+    import Vue from 'vue'
+    import Jfooter from './components/Jfooter'
+    import {getUrlKey} from './utils/native'
 
 export default {
   name: 'app',
@@ -22,7 +22,6 @@ export default {
     if (token) {
       window.localStorage.setItem('token', token)
     } else {
-      console.log("未登陆 无token")
       Vue.toast('未登陆 无token',{
         horizontalPosition: 'center',
         verticalPosition: 'center',

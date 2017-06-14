@@ -3,7 +3,7 @@
       <span class="clickBtn" @click="showTime">{{dataText}}</span>
 
         <div v-if="datarows && datarows.length ">
-            <router-link  v-for="data in datarows" tag="span" :to="{ path: '/textCon',query: { ID: data.ID }}" class="listBtn">
+            <router-link  v-for="(data,index) in datarows" tag="span" :to="{ path: '/textCon',query: { ID: data.ID }}" class="listBtn" key="index">
                 <p class="p1">{{data.TITLE}}</p>
                 <p class="p2">{{convert(data.CREATE_TIME)}}</p>
             </router-link>
@@ -103,6 +103,12 @@
     padding: rem(20);
     border: 1px solid $borderColor;
       margin-top: 10px;
+  line-height: 1.5;
+  .p1 {
+      font-size: rem(34);
+      color: #141414;
+      margin-right: rem(100);
+  }
       .p2 {
           position: relative;
           margin-top:rem(18);

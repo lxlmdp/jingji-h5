@@ -2,7 +2,7 @@
     <div class="itemList">
         <span class="itemTitle">{{model.itemName}}</span>
         <ul>
-            <itemList2 v-for="data in model.indexList" v-on:itemList2CLick="itemList1Click" :model="data" :selectData="selectData"></itemList2>
+            <itemList2 v-for="(data,index) in model.indexList" v-on:itemList2CLick="itemList1Click" :model="data" :selectData="selectData" key="index"></itemList2>
         </ul>
     </div>
 </template>
