@@ -2,8 +2,8 @@
   <div id="home">
     <jheader head-title="我的"></jheader>
     <div class="user">
-      <p class="name">{{userName}}</p>
-      <p class="post">发展改革委员会办公室</p>
+      <p class="name">{{userName || userInfo.STAFF_NAME}}</p>
+      <p class="post">{{userInfo.DEPT_NAME}}</p>
     </div>
     <ul class="homeList">
       <router-link class="changePsw" tag="li" to="/changePsw">
@@ -25,12 +25,27 @@
 <script>
   import Jheader from '../../components/Jheader'
   import * as native from '../../utils/native'
+  import {USERINFO} from '../../utils/api'
+
   export default {
     name: 'Jhome',
     data() {
         return {
-            userName: window.localStorage.getItem('userName') || '王某某'
+            userName: window.localStorage.getItem('userName'),
+            userInfo: {}
         }
+    },
+    created() {
+      this.$ajax.get(USERINFO,{
+          params: {
+              TOKEN: window.localStorage.getItem('token')
+          }
+      }).then(response => {
+          console.log(response)
+          this.userInfo = response.data.entity;
+      }).catch(err => {
+          console.log(err)
+      })
     },
     components : {
         Jheader

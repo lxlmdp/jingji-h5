@@ -20,18 +20,23 @@
         </div>
         <jtable :model="tableData"></jtable>
     </div>
-    <div v-show="selectZhibiao" class="zhibiaoCon">
-      <!--<item v-on:dateObject="dateObject" v-for="data in selectData"-->
-             <!--class="item"-->
-             <!--:model="data">-->
-      <!--</item>-->
-        <itemTree v-for="data in selectData" :model="data">
+      <transition name="slide-left">
+          <!--<div v-show="selectZhibiao" class="zhibiaoCon">
+              &lt;!&ndash;<item v-on:dateObject="dateObject" v-for="data in selectData"&ndash;&gt;
+              &lt;!&ndash;class="item"&ndash;&gt;
+              &lt;!&ndash;:model="data">&ndash;&gt;
+              &lt;!&ndash;</item>&ndash;&gt;
 
-        </itemTree>
+              &lt;!&ndash;<itemTree v-for="data in selectData"  :model="data"></itemTree>&ndash;&gt;
+
+              <button class="confirmBtn" @click="closeSelect">确定</button>
 
 
-      <button class="confirmBtn" @click="closeSelect">确定</button>
-    </div>
+
+          </div>-->
+          <itemList v-on:closeSelect='closeSelect' v-show="selectZhibiao" :model="selectData" :timeArr="timeArr"></itemList>
+      </transition>
+
     <datePicker v-if="selectDate" v-on:define="define" :date="timeArr"></datePicker>
       <Jloading v-show="showLoading"></Jloading>
   </div>
@@ -39,12 +44,13 @@
 <script>
   import Jheader from '../../components/Jheader'
   import Jtable from '../../components/table/Jtable'
-  import item from './children/item'
   import {APPINDEXS,INDEXTABLE} from '../../utils/api'
+  import {convertDate} from '../../utils/util'
   import qs from 'qs'
   import datePicker from './children/datePicker'
   import Vue from 'vue'
-  import itemTree from './children/itemTree.vue'
+  import itemTree from './children/itemTree'
+  import itemList from './children/itemList'
   import Jloading from '../../components/loading/Jloading'
 
   export default {
@@ -52,9 +58,9 @@
     components: {
         Jheader,
         Jtable,
-      item,
-      datePicker,
+        datePicker,
         itemTree,
+        itemList,
         Jloading
     },
     data() {
@@ -66,7 +72,7 @@
         tableData: {},
         selectDate: false,
         dataObject:{},
-        initTimeDate: new Date().getFullYear() + '年' + (new Date().getMonth() + 1) + '月',
+        initTimeDate: convertDate(new Date(),'YYYY年MM月'),
         zhibiaoArr: ['煤炭行业','电力行业'],
           initZhibiaoIndex: '2'
 
@@ -119,13 +125,8 @@
         dateObject(data) {
             this.dataObject = data
         },
-      closeSelect() {
-        var that = this;
-        var data = this.dataObject;
-        data.TIME_SPAN = this.timeArr.length > 1 ? '1' : '0' ;
-        data.SJ_TYPE = '1';
-        data.DATE_POINTS = this.timeArr;
-        console.log(data);
+      closeSelect(data) {
+          console.log(data);
           /* {
           "industryName": "GDP",
           "industryId": "",
@@ -261,5 +262,4 @@
     height: 20px;
     border: 1px solid #ccc;
   }
-
 </style>

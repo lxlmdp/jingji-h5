@@ -8,7 +8,7 @@
           <p class="p2">发布国家发改委运行局工作信息</p>
         </div>
         <span class="right">
-          消息(<em>{{opertionCount}}</em>)
+          新消息(<em>{{opertionCount}}</em>)
         </span>
       </router-link>
       <router-link tag="li" to="/runDaily/text">

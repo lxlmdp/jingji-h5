@@ -18,6 +18,7 @@
   import Jheader from '../../components/Jheader'
   import {CHANGEPSW} from '../../utils/api'
   import Vue from 'vue'
+  import * as native from '../../utils/native'
   export default {
       name: 'JchangePsw',
       data() {
@@ -32,7 +33,6 @@
       },
     methods: {
       savePsw () {
-          let that = this;
           let url = CHANGEPSW;
           let LOGIN_OLDPASSWORD = this.oldPsw;
           let LOGIN_PASSWORD = this.newPsw;
@@ -71,7 +71,7 @@
               horizontalPosition: 'center',
               verticalPosition: 'center',
             })
-            that.$router.go(-1)
+          native.logout()
           })
           .catch(function (error) {
             console.log(error);

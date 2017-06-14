@@ -1,5 +1,5 @@
 <template>
-    <li class="itemTree">
+    <li  transition="slide" class="itemTree">
         <div @click="toggle">{{model.industryName || model.itemName || model.indexName}}</div>
         <ul v-show="open" v-if="isFolder">
             <itemTree v-for="cel in model.items || model.indexList" :model="cel"></itemTree>
@@ -34,4 +34,5 @@ export default {
         margin: 20px;
         border-bottom: 1px solid #ccc;
     }
+
 </style>

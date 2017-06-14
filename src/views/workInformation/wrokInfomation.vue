@@ -8,8 +8,12 @@
           <p class="p1">{{row.TITLE_NAME}}</p>
           <p class="p2">{{convert(row.CREATE_TIME)}}</p>
           <span v-on:click.stop="listCollect(row)" class="collectBtn">
-            <span v-if="row.IS_COLLET === 0">收藏</span>
-            <span v-else>已收藏</span>
+            <span v-if="row.IS_COLLET === 0">
+              <i class="starBtn"></i>
+            </span>
+            <span v-else>
+              <i class="selectStarBtn"></i>
+            </span>
           </span>
         </router-link>
 
@@ -19,7 +23,7 @@
 </template>
 <script>
   import Jheader from '../../components/Jheader'
-  import {RELLIST,FILESAVE} from '../../utils/api'
+  import {RELLIST,FILESAVE,UPDATEIFDELETE} from '../../utils/api'
   import {convertDate} from '../../utils/util'
 
   export default {
@@ -43,11 +47,16 @@
     },
       methods: {
           convert (date) {
-              return  convertDate(date,'YYYY-MM-DD');;
+              return  convertDate(date,'YYYY-MM-DD');
           },
           listCollect (row) {
-
-            this.$ajax.get(FILESAVE,{
+              let url =null;
+            if(row.IS_COLLET === 0){
+                url = FILESAVE;
+            }else {
+                url = UPDATEIFDELETE;
+            }
+            this.$ajax.get(url,{
                 params: {
                     TOKEN: window.localStorage.getItem('token'),
                     ID: row.DATA_ID,
@@ -55,9 +64,11 @@
                 }
             })
                 .then(response => {
-                    console.log(response);
-                    row.IS_COLLET = 1;
-
+                    if(row.IS_COLLET === 0) {
+                        row.IS_COLLET = 1;
+                    }else {
+                        row.IS_COLLET = 0;
+                    }
                 })
                 .catch(err => {
                     console.log(err);
@@ -102,6 +113,7 @@
   .p1 {
     font-size: rem(34);
     color: #141414;
+    margin-right: rem(100);
   }
   .p2 {
     position: relative;
@@ -118,13 +130,24 @@
   .collectBtn{
     position: absolute;
     right: 20px;
-    bottom: 10px;
+    top:50%;
+    margin-top: -12px;
     color: #fff;
     padding: 0px 10px;
     border-radius: 6px;
     font-size: 12px;
-    background-color: #1055f1;
     line-height: 2;
+
+    .starBtn {
+      display: block;
+      width: rem(50);
+      height: rem(50);
+      background: url("../../images/3_3.png") center no-repeat;
+      background-size: contain;
+    }
+    .selectStarBtn {
+
+    }
   }
 
   }

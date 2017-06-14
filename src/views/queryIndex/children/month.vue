@@ -5,10 +5,11 @@
     </li>
 </template>
 <script>
+    import {convertDate} from '../../../utils/util'
 export default{
     name: 'month',
     props: {
-        month: Number,
+        month: String,
         year: Number,
         dateArr: Array
     },

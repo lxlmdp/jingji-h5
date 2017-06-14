@@ -2,7 +2,13 @@
   <div id="Jtext" class="Jtext">
       <span class="clickBtn" @click="showTime">{{dataText}}</span>
 
-      <router-link v-for="data in datarows" tag="span" :to="{ path: '/textCon',query: { ID: data.ID }}" class="listBtn">{{data.TITLE}}</router-link>
+        <div v-if="datarows && datarows.length ">
+            <router-link  v-for="data in datarows" tag="span" :to="{ path: '/textCon',query: { ID: data.ID }}" class="listBtn">
+                <p class="p1">{{data.TITLE}}</p>
+                <p class="p2">{{convert(data.CREATE_TIME)}}</p>
+            </router-link>
+        </div>
+      <div v-else class="noContent">暂无内容</div>
   </div>
 </template>
 <script>
@@ -22,6 +28,7 @@
   }
 
   import {REPORTWORDOUTLISTPAGE} from '../../../utils/api';
+  import {convertDate} from '../../../utils/util'
 
   export default {
       name: 'Jtext',
@@ -34,7 +41,7 @@
       created() {
           this.$ajax.get(REPORTWORDOUTLISTPAGE, {
               params: {
-                  TEMPLATE_ID: 'c6ef4b1c7e024477a33478cb6a8601a8',
+                  TEMPLATE_ID: '3c629ede130045fdadf4f637792a3d92',
                   TOKEN: window.localStorage.getItem('token'),
                   page: '1',
                   rows: '10'
@@ -48,6 +55,9 @@
           });
       },
     methods: {
+        convert (date) {
+            return  convertDate(date,'YYYY-MM-DD');;
+        },
           showTime () {
             var that = this;
             var datePicker = new DateTimePicker.Date(options, config)
@@ -70,8 +80,6 @@
                   .catch(function (error) {
                     console.log(error);
                   });
-              // formatData = 2016-10-19
-              // now = Date instance -> Wed Oct 19 2016 20:28:12 GMT+0800 (CST)
             })
           },
       toCon(data) {
@@ -85,15 +93,48 @@
   @import "../../../common/_global.scss";
 .clickBtn {
   display: block;
-  margin: 68px rem(36) 0;
+  margin: 68px 0 0;
   padding: rem(20);
   border: 1px solid $borderColor;
 }
   .listBtn {
     display: block;
-    margin: 10px rem(36) 0;
+    background-color: #fff;
     padding: rem(20);
     border: 1px solid $borderColor;
+      margin-top: 10px;
+      .p2 {
+          position: relative;
+          margin-top:rem(18);
+          font-size: rem(22);
+          color: #b3b3b3;
+      }
+  }
+  .noContent {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+      transform: translate(-50%,-50%);
+  }
+  .noContent:before {
+      position: absolute;
+      content: '';
+      width: 50px;
+      height: 2px;
+      border-bottom: 1px solid #fff;
+      left: -60px;
+      top:2px;
+  }
+  .noContent:after {
+      position: absolute;
+      content: '';
+      width: 50px;
+      height: 2px;
+      border-bottom: 1px solid #fff;
+      right: -60px;
+      top:2px;
   }
   /*.picker-mask {
     margin-top: 54px;

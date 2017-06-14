@@ -15,6 +15,7 @@
   }
 </script>
 <style lang="scss">
+  @import "../../common/_global.scss";
 #runDaily {
   position: absolute;
   width: 100%;
@@ -22,7 +23,7 @@
   left: 0;
   top: 0;
   z-index: 99;
-  background-color: #fff;
+  background-color: $bgColor;
   overflow: hidden;
 }
 </style>

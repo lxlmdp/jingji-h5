@@ -39,10 +39,32 @@ export default {
 
 <style lang="scss">
   @import "./common/reset.css";
-  .router-fade-enter-active, .router-fade-leave-active {
-    transition: opacity .3s;
+
+  /*fade 进入后 ＆ 离开后 状态*/
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .1s ease;
   }
-  .router-fade-enter, .router-fade-leave-active {
-    opacity: 0;
+  /*fade 进入前 ＆ 离开后*/
+  .fade-enter, .fade-leave-active {
+    opacity: 0
   }
+
+  /*endregion*/
+
+  /*region slide动画*/
+
+  /*.slide-left-enter-active, .slide-left-leave-active,
+  .slide-right-enter-active, .slide-right-leave-active {
+    transition: all .5s cubic-bezier(.55, 0, .1, 1);
+  }
+
+  .slide-left-enter, .slide-left-leave-active {
+    -webkit-transform: translate3d(50%, -100%, 10%);
+    transform: translate3d(50%, -100%, 10%);
+  }
+
+  .slide-right-enter, .slide-right-leave-active {
+    -webkit-transform: translate(370px, 0);
+    transform: translate(370px, 0);
+  }*/
 </style>

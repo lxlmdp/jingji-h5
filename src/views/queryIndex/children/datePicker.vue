@@ -32,6 +32,7 @@
 <script>
   import month from './month.vue'
   import Vue from 'vue'
+  import {convertDate} from '../../../utils/util'
   export default {
       name: 'datePicker',
       props: {
@@ -41,7 +42,7 @@
           return {
             initYear: new Date().getFullYear(),
             initMonth: '1',
-            initMonthArr: [1,2,3,4,5,6,7,8,9,10,11,12],
+            initMonthArr: ['01','02','03','04','05','06','07','08','09','10','11','12'],
               dateArr:this.date || []
           }
       },
@@ -53,7 +54,7 @@
               this.$emit('define',this.dateArr);
           },
           cancel() {
-              this.$emit('define',[new Date().getFullYear() + '年' + (new Date().getMonth() + 1) + '月'])
+              this.$emit('define',[convertDate(new Date(),'YYYY年MM月')])
           },
           clearedDateArr() {
             this.dateArr = []

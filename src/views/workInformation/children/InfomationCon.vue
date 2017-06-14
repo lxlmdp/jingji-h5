@@ -11,10 +11,6 @@
                 <div v-else>
                     <img v-bind:src="swiper">
                 </div>
-
-            </swiper-slide>
-            <swiper-slide>
-                <pdf src="../../static/test.pdf"></pdf>
             </swiper-slide>
             <div class="swiper-pagination"  slot="pagination"></div>
         </swiper>
@@ -52,8 +48,8 @@
             })
                 .then(response => {
                     this.data = response.data.entity;
-//                this.swiperData = response.data.entity.FILE_URL.split(",");
-                    this.swiperData = ['https://o82zr1kfu.qnssl.com/@/image/5628a260e4b0a38598cb4103.jpg','http://118.190.40.178:7070/mhtml/static/test.pdf']
+                this.swiperData = response.data.entity.FILE_URL.split(",");
+//                    this.swiperData = ['https://o82zr1kfu.qnssl.com/@/image/5628a260e4b0a38598cb4103.jpg','http://118.190.40.178:7070/mhtml/static/test.pdf']
                     console.log(response.data.entity.IS_COLLET);
                     if(response.data.entity.IS_COLLET !== 0) {
                         this.selectStarDate = 'true';
