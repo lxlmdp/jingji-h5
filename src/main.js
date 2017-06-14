@@ -9,7 +9,7 @@ require('vue-easy-toast/dist/vue-easy-toast.css')
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 import axios from 'axios'
-
+import {logout} from './utils/native'
 
 //region 插件
 Vue.use(Toast)
@@ -24,3 +24,19 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+/*ajax token失效统一处理*/
+axios.interceptors.response.use(function (response) {
+    if(response.data.success == 9) {
+        Vue.toast('您的账号在其他地方登陆或超时，请重新登陆',{
+            horizontalPosition: 'center',
+            verticalPosition: 'center',
+        });
+        native.logout();
+    }
+    // Do something with response data
+    return response;
+}, function (error) {
+    // Do something with response error
+    return Promise.reject(error);
+});
