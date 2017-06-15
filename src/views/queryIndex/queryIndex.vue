@@ -18,7 +18,7 @@
                 更多指标
             </div>
         </div>
-        <jtable :model="tableData"></jtable>
+        <jtable :model="tableData" :timeArr="timeArr"></jtable>
     </div>
       <transition name="slide-left">
           <!--<div v-show="selectZhibiao" class="zhibiaoCon">

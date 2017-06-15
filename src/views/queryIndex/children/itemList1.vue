@@ -18,8 +18,8 @@
         data() {
             return {
                 thisObject: {
-                    "itemName": this.model.itemName,
-                    "itemId": this.model.itemId,
+                    "itemName": '',
+                    "itemId": '',
                     "indexList": []
                 }
             }
@@ -28,15 +28,18 @@
             itemList2
         },
         methods: {
-            itemList1Click(model) {
-                let index = this.thisObject.indexList.indexOf(model);
+            itemList1Click(data) {
+                this.thisObject.itemName = this.model.itemName;
+                this.thisObject.itemId = this.model.itemId;
+
+                let index = this.thisObject.indexList.indexOf(data);
                 if(index > -1) {
                     this.thisObject.indexList.splice(index,1)
                 }else {
-                    if(this.timeArr.length <= 1) {
+                    if(this.timeArr.length > 1) {
                         this.thisObject.indexList = [];
                     }
-                    this.thisObject.indexList.push(model);
+                    this.thisObject.indexList.push(data);
                 }
                 this.$emit('itemList1Click',this.thisObject);
             }

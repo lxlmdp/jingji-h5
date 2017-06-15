@@ -93,7 +93,8 @@
   @import "../../../common/_global.scss";
 .clickBtn {
   display: block;
-  margin: 68px 0 0;
+  margin: 68px 20px 0;
+
   padding: rem(20);
   border: 1px solid $borderColor;
 }

@@ -6,22 +6,23 @@
 
             <swiper-slide class="swiperSlide" v-for="(swiper,index) in swiperData" key="index">
                 <div v-if="isPdf(swiper)">
-                    <pdf v-bind:src="swiper"></pdf>
+                    <pdf v-if="index == initPdfIndex" :src="addImgPath(swiper)"></pdf>
                 </div>
                 <div v-else>
-                    <img v-bind:src="swiper">
+                    <img v-bind:src="addImgPath(swiper)">
                 </div>
             </swiper-slide>
+
             <div class="swiper-pagination"  slot="pagination"></div>
         </swiper>
-
     </div>
 </template>
 <script>
     import Jheader from '../../../components/Jheader.vue'
-    import {RELINFO,FILESAVE,FILEINFO,UPDATEIFDELETE} from '../../../utils/api'
+    import {SERVER,RELINFO,FILESAVE,FILEINFO,UPDATEIFDELETE} from '../../../utils/api'
     import { swiper, swiperSlide } from 'vue-awesome-swiper'
     import pdf from 'vue-pdf'
+    import Vue from 'vue'
 
     export default {
         name: 'InfomationCon',
@@ -49,8 +50,7 @@
                 .then(response => {
                     this.data = response.data.entity;
                 this.swiperData = response.data.entity.FILE_URL.split(",");
-//                    this.swiperData = ['https://o82zr1kfu.qnssl.com/@/image/5628a260e4b0a38598cb4103.jpg','http://118.190.40.178:7070/mhtml/static/test.pdf']
-                    console.log(response.data.entity.IS_COLLET);
+//                    this.swiperData = ['https://o82zr1kfu.qnssl.com/@/image/5628a260e4b0a38598cb4103.jpg','http://118.190.40.178:7070/mhtml/static/test.pdf','https://o82zr1kfu.qnssl.com/@/image/5628a260e4b0a38598cb4103.jpg','http://118.190.40.178:7070/mhtml/static/test.pdf']
                     if(response.data.entity.IS_COLLET !== 0) {
                         this.selectStarDate = 'true';
                     }
@@ -61,26 +61,32 @@
 
         },
         data() {
+            const vue = this;
             return {
                 swiperOption: {
                     // NotNextTick is a component's own property, and if notNextTick is set to true, the component will not instantiate the swiper through NextTick, which means you can get the swiper object the first time (if you need to use the get swiper object to do what Things, then this property must be true)
                     // notNextTick是一个组件自有属性，如果notNextTick设置为true，组件则不会通过NextTick来实例化swiper，也就意味着你可以在第一时间获取到swiper对象，假如你需要刚加载遍使用获取swiper对象来做什么事，那么这个属性一定要是true
                     notNextTick: true,
                     // swiper configs 所有的配置同swiper官方api配置
-                    autoplay: 3000,
+//                    autoplay: 3000,
                     direction : 'horizontal',
                     grabCursor : true,
                     pagination : '.swiper-pagination',
                     // swiper的各种回调函数也可以出现在这个对象中，和swiper官方一样
-                    onTransitionStart(swiper){
+                    onTransitionStart(swiper,index){
 //                        console.log(swiper)
                     },
                     // more Swiper configs and callbacks...
                     // ...
+                    onSlideChangeEnd: function(swiper){
+                        let index = swiper.activeIndex;
+                        vue.initPdfIndex = index;
+                    }
                 },
                 data: {},
                 swiperData: [],
-                selectStarDate: 'false'
+                selectStarDate: 'false',
+                initPdfIndex: 0
             }
         },
         components: {
@@ -95,6 +101,9 @@
                 if(last == 'pdf') {
                     return true;
                 }
+            },
+            addImgPath(url) {
+              return SERVER + '/imgmsg/loadFile?URL=' + url;
             },
             jingjiCollect() {
                 let url = null;
@@ -121,6 +130,9 @@
                     .catch(err => {
                         console.log(err);
                     })
+            },
+            changePdfIndex() {
+                console.log('change');
             }
         }
     }

@@ -3,10 +3,10 @@
     <jheader go-back="true" type="collect"  head-title="煤电油运运行日报" v-on:collect="collect" v-bind:is-select="selectStarDate"></jheader>
     <div class="scrollCon">
       <div class="htmlCon" v-html="libText"></div>
-      <div v-show="data.DATA && data.DATA.length" class="baobiaoBtn">
+      <!--<div v-show="data.DATA && data.DATA.length" class="baobiaoBtn">
         <span @click="showTable">{{showTableText}}</span>
-      </div>
-      <table class="baobiaoTable" v-show="showBaobiao" border="1">
+      </div>-->
+      <table class="baobiaoTable" border="1">
         <tr v-for="data in data.DATA">
           <td>{{data.NAME_CH}}</td>
           <td>{{data.VALUE}}</td>

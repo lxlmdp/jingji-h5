@@ -1,6 +1,7 @@
 
 
-const SERVER = 'http://118.190.40.178:7070/'
+export const SERVER = 'http://118.190.40.178:7070/'
+// export const SERVER = 'http://192.168.1.111:8089/'
 
 //登录
 const LOGIN = SERVER + '/app/login';

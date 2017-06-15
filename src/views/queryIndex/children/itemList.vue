@@ -54,7 +54,7 @@ export default {
             if(index > -1) {
                 this.dateObject.items[index] = item;
             }else {
-                if(this.timeArr.length <= 1) {
+                if(this.timeArr.length > 1) {
                     this.dateObject.items = []
                 }
                 this.dateObject.items.push(item);
@@ -92,7 +92,8 @@ padding-top:54px;
             height: 100%;
             float: left;
             text-align: center;
-            overflow-y: auto;
+            overflow-y:auto;
+            -webkit-overflow-scrolling:touch;
             .leftList {
                 height:30px;
                 line-height: 30px;

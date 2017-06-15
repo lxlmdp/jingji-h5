@@ -2,28 +2,57 @@
 <div>
   <div class="table-wrapper" v-if="model && model.entity">
     <div class="scrollable">
-     <table class="responsive" >
-    <tbody>
-    <tr>
-      <th v-for="data in model.entity.list[0].INDEXS">
-        {{data.INDEX_NAME || '空值'}}
-      </th>
-    </tr>
-    <tr v-for="data in model.entity.list">
-      <td v-for="value in data.INDEXS">{{value.VALUE || '空值'}}</td>
-    </tr>
-    </tbody>
-  </table></div><div class="pinned"><table class="">
-    <tbody>
-    <tr>
-      <th>指标名称</th>
-    </tr>
-    <tr v-for="data in model.entity.list">
-      <td>{{data.ITEM_NAME}}</td>
-    </tr>
-    </tbody>
-  </table>
-  </div>
+     <table class="responsive" v-if="timeArr.length > 1">
+        <tbody>
+        <tr>
+          <th v-for="data in model.entity.list[0].INDEXS">
+            {{data.INDEX_NAME || '空值'}}
+          </th>
+        </tr>
+        <tr v-for="data in model.entity.list">
+          <td v-for="value in data.INDEXS">{{value.VALUE || '空值'}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <table class="responsive" v-else>
+
+      <tbody>
+      <tr>
+        <th v-for="time in timeArr">{{time}}</th>
+      </tr>
+      <div  v-for="data in model.entity.list">
+        <tr v-for="cel in data.INDEXS">
+          <td>{{cel.VALUE || '空值'}}</td>
+        </tr>
+      </div>
+
+      </tbody>
+    </table>
+    </div>
+    <div class="pinned">
+      <table v-if="timeArr.length>1">
+        <tbody>
+        <tr>
+          <th>指标名称</th>
+        </tr>
+        <tr v-for="data in model.entity.list">
+          <td>{{data.ITEM_NAME}}</td>
+        </tr>
+        </tbody>
+      </table>
+      <table v-else>
+        <tbody>
+        <tr>
+          <th>指标名称</th>
+        </tr>
+        <div  v-for="data in model.entity.list">
+          <tr v-for="cel in data.INDEXS">
+            <td>{{cel.INDEX_NAME}}</td>
+          </tr>
+        </div>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 </template>
@@ -31,7 +60,8 @@
   export default{
     name: 'Jtable',
     props: {
-      model: {}
+      model: Object,
+      timeArr: Array
     }
   }
 

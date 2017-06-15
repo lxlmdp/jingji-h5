@@ -33,7 +33,7 @@
           params: {
               TOKEN: window.localStorage.getItem('token'),
               page: '1',
-              rows: '10'
+              rows: '9999'
           }
       })
         .then(reponese => {
@@ -97,10 +97,14 @@
     height: 100%;
     background-color: $bgColor;
     padding-top: 54px;
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch;
+
     z-index: 99;
   .conList {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
   ul {
     overflow-y: auto;
   li {

@@ -9,7 +9,7 @@ require('vue-easy-toast/dist/vue-easy-toast.css')
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 import axios from 'axios'
-import {logout} from './utils/native'
+import * as native from './utils/native'
 
 //region 插件
 Vue.use(Toast)
@@ -40,3 +40,12 @@ axios.interceptors.response.use(function (response) {
     // Do something with response error
     return Promise.reject(error);
 });
+
+
+/*
+let script = document.createElement('script')
+script.src = "https://cdnjs.cloudflare.com/ajax/libs/eruda/1.2.2/eruda.min.js" //"http://eruda.liriliri.io/eruda.min.js";
+document.body.appendChild(script)
+script.onload = function () {
+    eruda.init()
+}*/

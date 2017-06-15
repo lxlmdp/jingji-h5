@@ -2,7 +2,7 @@
   <div id="home">
     <jheader head-title="我的"></jheader>
     <div class="user">
-      <p class="name">{{userName || userInfo.STAFF_NAME}}</p>
+      <p class="name">{{userInfo.STAFF_NAME}}</p>
       <p class="post">{{userInfo.DEPT_NAME}}</p>
     </div>
     <ul class="homeList">
