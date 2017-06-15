@@ -61,7 +61,7 @@
 
         },
         data() {
-            const vue = this;
+            var that = this;
             return {
                 swiperOption: {
                     // NotNextTick is a component's own property, and if notNextTick is set to true, the component will not instantiate the swiper through NextTick, which means you can get the swiper object the first time (if you need to use the get swiper object to do what Things, then this property must be true)
@@ -80,7 +80,7 @@
                     // ...
                     onSlideChangeEnd: function(swiper){
                         let index = swiper.activeIndex;
-                        vue.initPdfIndex = index;
+                        that.initPdfIndex = index;
                     }
                 },
                 data: {},
